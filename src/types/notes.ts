@@ -1,5 +1,14 @@
 export interface INote {
-  id: number,
+  id: string,
   text: string,
   list: number,
+}
+
+export interface INotesState {
+  notes: INote[]
+}
+
+export interface INoteReplacer {
+  selectedNoteId: string;
+  newNoteId: string;
 }

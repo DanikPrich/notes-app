@@ -18,5 +18,6 @@ const createNote = (text: string) => {
   />
   <NotesList
     :list="notesStore.notes"
+    @replace="notesStore.replaceNoteById"
   />
 </template>
