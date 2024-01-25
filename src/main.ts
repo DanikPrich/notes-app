@@ -1,5 +1,6 @@
 import './assets/styles/main.css'
 import './assets/styles/tailwind.css';
+// import 'vue-material-design-icons/styles.css'
 
 import { createApp } from 'vue'
 import { createPinia } from 'pinia'

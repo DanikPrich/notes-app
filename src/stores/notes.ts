@@ -1,16 +1,12 @@
 import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
-import type { INote } from '@/types/notes';
+import type { INote, INoteCreateDto, INoteReplaceDto } from '@/types/notes';
 import { v4 as uuidv4 } from 'uuid';
 
 interface INotesState {
   notes: INote[]
 }
 
-interface INoteReplacer {
-  selectedNoteId: string;
-  newNoteId: string;
-}
 
 export const useNotesStore = defineStore('notes', {
 
@@ -21,18 +17,18 @@ export const useNotesStore = defineStore('notes', {
   getters: {},
   
   actions: {
-    create(text: string): void {
+    create(data: INoteCreateDto): void {
       const newNote: INote = {
         id: uuidv4(),
-        list: this.notes.length + 1,
-        text,
+        title: data.title,
+        text: data.text,
       }
       this.notes = [newNote, ...this.notes]
     },
 
-    replace({ selectedNoteId, newNoteId }: INoteReplacer): void {
-      const selectedNoteIndex = this.notes.findIndex(note => note.id === selectedNoteId);
-      const newNoteIndex = this.notes.findIndex(note => note.id === newNoteId);
+    replace(data: INoteReplaceDto): void {
+      const selectedNoteIndex = this.notes.findIndex(note => note.id === data.selectedNoteId);
+      const newNoteIndex = this.notes.findIndex(note => note.id === data.newNoteId);
     
       if (selectedNoteIndex !== -1 && newNoteIndex !== -1) {
         const updatedNotes = [...this.notes];

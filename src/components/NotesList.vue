@@ -38,11 +38,11 @@ const onDrop = (event: DragEvent , newNoteId: string) => {
             :note="item"
             :key="item.id"
             :draggable="true"
-            @dragstart="startDrag($event, item.id)"
-            @drop="onDrop($event, item.id)"
             @dragenter.prevent
             @dragover.prevent
             @remove="emits('remove', item.id)"
+            @dragstart="startDrag($event, item.id)"
+            @drop="onDrop($event, item.id)"
           />
         </transition>
       </template>

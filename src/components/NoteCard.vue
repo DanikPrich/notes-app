@@ -10,8 +10,10 @@
       </svg>
     </button>
     <div class="px-6 py-4 w-full">
-      <div class="font-bold text-xl mb-2">#{{ props.note.list }}</div>
-      <p class="text-wrap break-all text-gray-700 text-base ">
+      <p v-show="props.note.title" class="font-bold text-xl mb-2">
+        {{ props.note.title }}
+      </p>
+      <p v-show="props.note.text" class="text-wrap break-all text-gray-700 text-base ">
         {{props.note.text}}
       </p>
     </div>
@@ -19,11 +21,13 @@
 </template>
 
 <script setup lang="ts">
+import type { INote } from '@/types/notes';
+import type { PropType } from 'vue';
 
   const emits = defineEmits(['remove'])
   const props = defineProps({
     note: {
-      type: Object,
+      type: Object as PropType<INote>,
       default: () => {}
     }
   })
