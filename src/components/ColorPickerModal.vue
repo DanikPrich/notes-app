@@ -13,8 +13,9 @@
 </template>
 
 <script setup lang="ts">
+  // @ts-ignore 
+  import InvertColorsOff from 'vue-material-design-icons/InvertColorsOff.vue'; 
   import { vOnClickOutside } from '@vueuse/components'
-  import InvertColorsOff from 'vue-material-design-icons/InvertColorsOff.vue';
   import { ref } from 'vue';
 
   const emits = defineEmits(['selectColor', 'close'])

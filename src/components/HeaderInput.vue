@@ -69,7 +69,8 @@
 </template>
 
 <script setup lang="ts">
-import PaletteOutline from 'vue-material-design-icons/PaletteOutline.vue';
+// @ts-ignore 
+import PaletteOutline from 'vue-material-design-icons/PaletteOutline.vue'; 
 import ColorPickerModal from './ColorPickerModal.vue'
 import { vOnClickOutside } from '@vueuse/components'
 import { ref, nextTick, computed } from 'vue';
