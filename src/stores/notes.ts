@@ -6,22 +6,28 @@ interface INotesState {
   notes: INote[]
 }
 
+const NOTES_KEY = 'notes'
 
 export const useNotesStore = defineStore('notes', {
 
   state: (): INotesState => ({
-    notes: []
+    notes: JSON.parse(localStorage.getItem(NOTES_KEY) || '[]'),
   }),
 
   getters: {},
   
   actions: {
+    saveToLocalStorage(): void {
+      localStorage.setItem(NOTES_KEY, JSON.stringify(this.notes));
+    },
+
     create(data: INoteCreateDto): void {
       const newNote: INote = {
         id: uuidv4(),
         ...data,
       }
       this.notes = [newNote, ...this.notes]
+      this.saveToLocalStorage();
     },
 
     replace(data: INoteReplaceDto): void {
@@ -34,11 +40,13 @@ export const useNotesStore = defineStore('notes', {
 
         updatedNotes.splice(newNoteIndex, 0, removedNote);
         this.notes = updatedNotes;
+        this.saveToLocalStorage();
       }
     },
 
     remove(id: string): void {
       this.notes = this.notes.filter(note => note.id !== id)
+      this.saveToLocalStorage();
     }
   },
 });

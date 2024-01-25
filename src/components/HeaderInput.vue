@@ -28,7 +28,7 @@
         id="inputField"
         name="inputField"
         class="w-full focus:outline-none focus:shadow-outline h-auto px-5 py-4 text-gray-700 placeholder:font-medium font-bold resize-none bg-transparent"
-        placeholder="Введите заголовок"
+        placeholder="Enter the title"
         ref="titleInputElement"
         @input="adjustTitleHeight"
         @keydown.enter.prevent="() => {if(textInputElement) textInputElement.focus()}"
@@ -41,7 +41,7 @@
         id="inputField"
         name="inputField"
         class="w-full focus:outline-none focus:shadow-outline h-auto px-5 py-4 text-gray-700 placeholder:font-medium resize-none bg-transparent"
-        placeholder="Заметка"
+        placeholder="Note..."
         ref="textInputElement"
         @input="adjustTextAreaHeight"
         @keydown.enter.prevent="onSubmit"
@@ -69,9 +69,9 @@
 </template>
 
 <script setup lang="ts">
-import { vOnClickOutside } from '@vueuse/components'
 import PaletteOutline from 'vue-material-design-icons/PaletteOutline.vue';
 import ColorPickerModal from './ColorPickerModal.vue'
+import { vOnClickOutside } from '@vueuse/components'
 import { ref, nextTick, computed } from 'vue';
 import type { INoteCreateDto } from '@/types/notes';
 
