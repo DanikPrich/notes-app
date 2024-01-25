@@ -5,6 +5,7 @@
   "compilerOptions": {
     "verbatimModuleSyntax": true,
     "composite": true,
+    "allowJs": true,
     "noEmit": true,
     "baseUrl": ".",
     "paths": {

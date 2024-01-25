@@ -2,6 +2,7 @@ export interface INote {
   id: string,
   text: string,
   title: string,
+  color: string,
 }
 
 export interface INotesState {
@@ -16,4 +17,5 @@ export interface INoteReplaceDto {
 export interface INoteCreateDto {
   title: string
   text: string
+  color: string
 }

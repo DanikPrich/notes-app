@@ -1,4 +1,3 @@
-import { ref, computed } from 'vue'
 import { defineStore } from 'pinia'
 import type { INote, INoteCreateDto, INoteReplaceDto } from '@/types/notes';
 import { v4 as uuidv4 } from 'uuid';
@@ -20,8 +19,7 @@ export const useNotesStore = defineStore('notes', {
     create(data: INoteCreateDto): void {
       const newNote: INote = {
         id: uuidv4(),
-        title: data.title,
-        text: data.text,
+        ...data,
       }
       this.notes = [newNote, ...this.notes]
     },
