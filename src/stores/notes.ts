@@ -21,7 +21,7 @@ export const useNotesStore = defineStore('notes', {
   getters: {},
   
   actions: {
-    createNote(text: string): void {
+    create(text: string): void {
       const newNote: INote = {
         id: uuidv4(),
         list: this.notes.length + 1,
@@ -30,14 +30,21 @@ export const useNotesStore = defineStore('notes', {
       this.notes = [newNote, ...this.notes]
     },
 
-    replaceNoteById({selectedNoteId, newNoteId}: INoteReplacer): void {
+    replace({ selectedNoteId, newNoteId }: INoteReplacer): void {
       const selectedNoteIndex = this.notes.findIndex(note => note.id === selectedNoteId);
       const newNoteIndex = this.notes.findIndex(note => note.id === newNoteId);
-
+    
       if (selectedNoteIndex !== -1 && newNoteIndex !== -1) {
-        const [removedNote] = this.notes.splice(selectedNoteIndex, 1);
-        this.notes.splice(newNoteIndex, 0, removedNote);
+        const updatedNotes = [...this.notes];
+        const [removedNote] = updatedNotes.splice(selectedNoteIndex, 1);
+
+        updatedNotes.splice(newNoteIndex, 0, removedNote);
+        this.notes = updatedNotes;
       }
+    },
+
+    remove(id: string): void {
+      this.notes = this.notes.filter(note => note.id !== id)
     }
   },
 });
