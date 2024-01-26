@@ -19,12 +19,14 @@
   import { ref } from 'vue';
 
   const emits = defineEmits(['selectColor', 'close'])
+
   const props = defineProps({
     isActive: {
       type: Boolean,
       default: true
     }
   })
+
   const colors = ref(['bg-white', 'bg-blue-200', 'bg-purple-200', 'bg-red-200', 'bg-green-200', 'bg-yellow-200'])
 </script>
 

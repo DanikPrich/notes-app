@@ -1,5 +1,5 @@
 import { defineStore } from 'pinia'
-import type { INote, INoteCreateDto, INoteReplaceDto } from '@/types/notes';
+import type { INote, INoteCreateDto, INoteReplaceDto, INoteUpdateDto } from '@/types/notes';
 import { v4 as uuidv4 } from 'uuid';
 
 interface INotesState {
@@ -19,6 +19,15 @@ export const useNotesStore = defineStore('notes', {
   actions: {
     saveToLocalStorage(): void {
       localStorage.setItem(NOTES_KEY, JSON.stringify(this.notes));
+    },
+
+    edit(data: INoteUpdateDto): void {
+      const noteIndex = this.notes.findIndex(note => note.id === data.id)
+      const updatedNotes = [...this.notes]
+
+      updatedNotes.splice(noteIndex, 1, data)
+      this.notes = updatedNotes;
+      this.saveToLocalStorage();
     },
 
     create(data: INoteCreateDto): void {

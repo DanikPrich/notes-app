@@ -16,5 +16,6 @@ const notesStore = useNotesStore()
     :list="notesStore.notes"
     @replace="notesStore.replace"
     @remove="notesStore.remove"
+    @edit="notesStore.edit"
   />
 </template>
