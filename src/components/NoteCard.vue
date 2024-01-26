@@ -1,7 +1,7 @@
 <template>
   <div 
-    class="relative flex  rounded-lg shadow-lg border-gray border-solid border cursor-pointer hover:bg-transparrent"
-    :class="[props.note.color, props.note.color === 'bg-white' ? 'hover:bg-black/5' : `hover:${props.note.color}/50`]"
+    class="relative flex  rounded-lg shadow-lg border-gray border-solid border cursor-pointer"
+    :class="[slyle, hoverStyle]"
   >
     <div class="px-6 py-4 w-full">
       <p v-show="props.note.title" class="text-wrap break-all font-bold text-xl mb-2">
@@ -16,13 +16,21 @@
 
 <script setup lang="ts">
   import type { INote } from '@/types/notes';
-  import type { PropType } from 'vue';
+  import { type PropType, computed } from 'vue';
 
   const props = defineProps({
     note: {
       type: Object as PropType<INote>,
       default: () => {}
     }
+  })
+
+  const slyle = computed(() => {
+    return props.note.color === 'white' ? `bg-${props.note.color}` : `bg-${props.note.color}-300`
+  })
+
+  const hoverStyle = computed(() => {
+    return props.note.color === 'white' ? 'hover:bg-black/20' : `hover:bg-${props.note.color}-400`
   })
   
 </script>

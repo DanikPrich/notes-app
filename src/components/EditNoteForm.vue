@@ -1,7 +1,7 @@
 <template>
   <form 
     class="max-w-4xl shadow-md appearance-none border rounded-lg w-full leading-tight overflow-hidden" 
-    :class="selectedColor"
+    :class="[selectedColor === 'white' ? 'bg-white' : `bg-${selectedColor}-300`]"
     v-on-click-outside="onSubmit"
     @keydown.esc="onSubmit"
     @submit.prevent="onSubmit" 
@@ -81,7 +81,7 @@
   
   const titleInputElement = ref<HTMLInputElement | null>(null)
   const textInputElement = ref<HTMLInputElement | null>(null)
-  const selectedColor = ref<string>('bg-white')
+  const selectedColor = ref<string>('white')
   const isColorModalActive = ref<boolean>(false)
   const data = ref<INoteCreateDto>({
     title: '',
@@ -126,7 +126,7 @@
   }
 
   const fontColor = computed(() => {
-    return selectedColor.value === 'bg-white' ? 'placeholder:text-grey-700' : 'placeholder:text-black'
+    return selectedColor.value === 'white' ? 'placeholder:text-grey-700' : 'placeholder:text-black'
   })
 
   onMounted(() => {

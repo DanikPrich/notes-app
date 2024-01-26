@@ -1,13 +1,17 @@
 <template>
-  <div v-show="props.isActive" v-on-click-outside="() => emits('close')" class="flex justify-between bg-white gap-4 p-4 border rounded-lg">
+  <div 
+    class="flex justify-between bg-white gap-4 p-4 border rounded-lg"
+    v-show="props.isActive" 
+    v-on-click-outside="() => emits('close')" 
+  >
     <div 
       v-for="color in colors" 
       :key="color"
       class="h-10 w-10 rounded-full  hover:border-2 border-black flex items-center justify-center cursor-pointer"
-      :class="color"
+      :class="[`bg-${color}-200`]"
       @click="() => emits('selectColor', color)"
     >
-      <InvertColorsOff v-if="color === 'bg-white'"/>
+      <InvertColorsOff v-if="color === 'white'"/>
     </div>
   </div>
 </template>
@@ -27,7 +31,7 @@
     }
   })
 
-  const colors = ref(['bg-white', 'bg-blue-200', 'bg-purple-200', 'bg-red-200', 'bg-green-200', 'bg-yellow-200'])
+  const colors = ref(['white', 'blue', 'purple', 'red', 'green', 'yellow'])
 </script>
 
 <style lang="scss" scoped>
